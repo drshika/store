@@ -36,6 +36,8 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
   
+  allow_unauthenticated_access only: %i[ index show]
+  
   private
     def set_product
       @product = Product.find(params[:id])
