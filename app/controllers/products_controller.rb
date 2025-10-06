@@ -1,12 +1,12 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy] 
+  before_action :set_product, only: %i[ show edit update destroy]
   def index
     @products = Product.all
   end
 
   def show
   end
-  
+
   def new
     @product = Product.new
   end
@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
   def update
     if @product.update(product_params)
       redirect_to @product
-    else 
+    else
       render :edit, status: :unprocessable_entity
     end
   end
@@ -35,15 +35,15 @@ class ProductsController < ApplicationController
     @product.destroy
     redirect_to products_path
   end
-  
+
   allow_unauthenticated_access only: %i[ index show]
-  
+
   private
     def set_product
       @product = Product.find(params[:id])
     end
 
     def product_params
-      params.expect(product: [ :name, :description, :featured_image, :inventory_count])
+      params.expect(product: [ :name, :description, :featured_image, :inventory_count ])
     end
 end
